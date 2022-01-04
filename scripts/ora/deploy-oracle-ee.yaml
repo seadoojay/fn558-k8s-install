@@ -1,0 +1,45 @@
+# PostgreSQL StatefulSet
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oracle-db-ee
+spec:
+  selector:
+    matchLabels:
+      app: oracle-db-ee
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oracle-db-ee
+    spec:
+      volumes:
+        - name: oracle-pv-storage
+          persistentVolumeClaim:
+            claimName: ora-data-pvc
+        - name: oracle-pv-wallet
+          persistentVolumeClaim:
+            claimName: ora-wallet-pvc
+      containers:
+        - name: oracle-db-ee
+          image: eu.gcr.io/hsbc-867330-ecmwf-dev/oracledb:21.3.0-ee
+          volumeMounts:
+            - name: oracle-pv-storage
+              mountPath: /fnvol/oradata/default
+            - name: oracle-pv-wallet
+              mountPath: /fnvol/orawallet 
+          ports:
+            - containerPort: 1521
+            - containerPort: 5500
+          env:
+            - name: ORACLE_PWD
+              value: paSSw0rd123
+            - name: ORACLE_CHARACTERSET
+              value: AL32UTF8
+            - name: ORACLE_EDITION
+              value: enterprise
+            - name: ENABLE_ARCHIVELOG
+              value: "false"
+            - name: WALLET_DIR
+              value: /opt/oracle/wallet
+      
