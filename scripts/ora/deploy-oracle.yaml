@@ -1,0 +1,34 @@
+# PostgreSQL StatefulSet
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oracle-db
+spec:
+  selector:
+    matchLabels:
+      app: oracle-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oracle-db
+    spec:
+      volumes:
+        - name: oracle-pv-storage
+          persistentVolumeClaim:
+            claimName: ora-data-pvc
+      containers:
+        - name: oracle-db
+          image: eu.gcr.io/hsbc-867330-ecmwf-dev/oraclejdb:latest
+          volumeMounts:
+            - name: oracle-pv-storage
+              mountPath: /fnvol/oradata/default
+          ports:
+            - containerPort: 1521
+            - containerPort: 5500
+          env:
+            - name: ORACLE_PWD
+              value: password
+            - name: ORACLE_CHARACTERSET
+              value: AL32UTF8
+      

@@ -1,0 +1,28 @@
+dn: cn=P8Admin,dc=ecm,dc=ibm,dc=com
+cn: P8Admin
+sn: P8Admin
+userpassword: p@ssword
+objectclass: top
+objectclass: organizationalPerson
+objectclass: person
+
+dn: cn=tester,dc=ecm,dc=ibm,dc=com
+cn: tester
+sn: tester
+userpassword: p@ssword
+objectclass: top
+objectclass: organizationalPerson
+objectclass: person
+
+dn: cn=P8Admins,dc=ecm,dc=ibm,dc=com
+objectclass: groupOfNames
+objectclass: top
+cn: P8Admins
+member: cn=P8Admin,dc=ecm,dc=ibm,dc=com
+
+dn: cn=GeneralUsers,dc=ecm,dc=ibm,dc=com
+objectclass: groupOfNames
+objectclass: top
+cn: GeneralUsers
+member: cn=P8Admin,dc=ecm,dc=ibm,dc=com
+member: cn=tester,dc=ecm,dc=ibm,dc=com

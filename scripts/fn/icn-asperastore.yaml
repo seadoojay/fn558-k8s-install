@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: icn-asperastore
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: icn-asperastore-pv
+  volumeName: icn-asperastore-pv
+status:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi

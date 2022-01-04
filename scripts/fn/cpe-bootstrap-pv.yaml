@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cpe-bootstrap-pv
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  nfs:
+    path: /fnvol/hsbc-867330-ecmwf-dev/default/cfgstore/cpe/bootstrap
+    server: 10.57.149.250
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: cpe-bootstrap-pv

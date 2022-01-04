@@ -1,0 +1,15 @@
+{ 
+  "--file-share":
+  {
+        "capacity":"102400",
+        "name":"fn_vol",
+        "nfs-export-options":
+          {
+           "access-mode":"READ_WRITE",
+           "ip-ranges": [
+             "10.154.0.0/20"
+           ],
+           "squash-mode":"NO_ROOT_SQUASH"
+          }
+  }
+}

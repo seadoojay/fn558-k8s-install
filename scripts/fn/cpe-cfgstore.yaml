@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cpe-cfgstore
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: cpe-cfgstore-pv
+  volumeName: cpe-cfgstore-pv
+status:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi
