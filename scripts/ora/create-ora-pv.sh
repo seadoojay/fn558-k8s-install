@@ -6,7 +6,7 @@ metadata:
 labels:
 spec:
   capacity:
-    storage: 5Gi
+    storage: 50Gi
   accessModes:
   - ReadWriteMany
   nfs:
@@ -28,7 +28,7 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 5Gi
+      storage: 50Gi
   volumeName: ora-pv-volume
 EOF
 

@@ -1,4 +1,4 @@
-# PostgreSQL StatefulSet
+# Oracle StatefulSet
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,24 +22,29 @@ spec:
             claimName: ora-wallet-pvc
       containers:
         - name: oracle-db-ee
-          image: eu.gcr.io/hsbc-867330-ecmwf-dev/oracledb:21.3.0-ee
+          image: eu.gcr.io/hsbc-867330-ecmwf-dev/oracledb:19.3.0-ee
           volumeMounts:
             - name: oracle-pv-storage
-              mountPath: /fnvol/oradata/default
+              mountPath: /opt/oracle/oradata
+          volumeMounts:
             - name: oracle-pv-wallet
-              mountPath: /fnvol/orawallet 
+              mountPath: /opt/oracle/wallet
           ports:
             - containerPort: 1521
             - containerPort: 5500
+            - containerPort: 2484
+            - containerPort: 8080
           env:
             - name: ORACLE_PWD
               value: paSSw0rd123
+            - name: ORACLE_SID
+              value: ORCLCDB
+            - name: ORACLE_PDB
+              value: ORCLPDB1
             - name: ORACLE_CHARACTERSET
               value: AL32UTF8
             - name: ORACLE_EDITION
               value: enterprise
             - name: ENABLE_ARCHIVELOG
               value: "false"
-            - name: WALLET_DIR
-              value: /opt/oracle/wallet
       

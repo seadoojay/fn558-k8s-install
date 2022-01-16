@@ -14,6 +14,9 @@ spec:
     - name: oem-tcp
       port: 8080
       targetPort: 5500
+    - name: oem-wallet
+      port: 2484
+      targetPort: 2484
 EOF
 
 kubectl apply -f oracle-ee-service-ext.yaml

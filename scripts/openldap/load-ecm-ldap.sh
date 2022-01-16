@@ -53,7 +53,7 @@ function addLdapUsers() {
     echo "$LDAP_ACL">/tmp/ecm_acc.ldif
     ldapadd -x -D "cn=admin,$LDAP_BASE_DN" -w $GLOBAL_PASSWORD -f /tmp/ecm.ldif
     ldapmodify -Y EXTERNAL -Q -H ldapi:/// -f /tmp/ecm_acc.ldif
-    rm -f /tmp/ecm.ldif
+    #rm -f /tmp/ecm.ldif
 EOF
 
 	if [ $? -eq 0 ] ;then

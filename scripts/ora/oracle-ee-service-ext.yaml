@@ -13,3 +13,6 @@ spec:
     - name: oem-tcp
       port: 8080
       targetPort: 5500
+    - name: oem-wallet
+      port: 2484
+      targetPort: 2484

@@ -9,5 +9,5 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 5Gi
+      storage: 50Gi
   volumeName: ora-pv-volume
